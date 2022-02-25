@@ -341,6 +341,10 @@ class LRParser:
         sym.type = "$end"
         symstack.append(sym)
         state = 0
+        # get number assignment to newline action
+        # cannot hardcode as python2 and python3 produce different
+        # numbers
+        newline = actions[state].get('NEWLINE')
         while 1:
             # Get the next symbol on the input.  If a lookahead symbol
             # is already set, we just use that. Otherwise, we'll pull
@@ -371,7 +375,7 @@ class LRParser:
 
             if t is not None:
                 if t > 0:
-                    if t == 3 and state == 0:
+                    if t == newline and state == 0:
                         # If in init state and \n is encountered, then shift the \n off the stack and continue
                         # The shift off the stack is accomplished by just never adding it in the first place
                         state = 0
@@ -664,6 +668,11 @@ class LRParser:
         sym.type = '$end'
         symstack.append(sym)
         state = 0
+
+        # get number assignment to newline action
+        # cannot hardcode as python2 and python3 produce different
+        # numbers
+        newline = actions[state].get('NEWLINE')
         while 1:
             # Get the next symbol on the input.  If a lookahead symbol
             # is already set, we just use that. Otherwise, we'll pull
@@ -684,7 +693,7 @@ class LRParser:
 
             if t is not None:
                 if t > 0:
-                    if t == 3 and state == 0:
+                    if t == newline and state == 0:
                         # If in init state and \n is encountered, then shift the \n off the stack and continue
                         # The shift off the stack is accomplished by just never adding it in the first place
                         state = 0
@@ -945,6 +954,11 @@ class LRParser:
         sym.type = '$end'
         symstack.append(sym)
         state = 0
+        
+        # get number assignment to newline action
+        # cannot hardcode as python2 and python3 produce different
+        # numbers
+        newline = actions[state].get('NEWLINE')
         while 1:
             # Get the next symbol on the input.  If a lookahead symbol
             # is already set, we just use that. Otherwise, we'll pull
@@ -965,7 +979,7 @@ class LRParser:
 
             if t is not None:
                 if t > 0:
-                    if t == 3 and state == 0:
+                    if t == newline and state == 0:
                         # If in init state and \n is encountered, then shift the \n off the stack and continue
                         # The shift off the stack is accomplished by just never adding it in the first place
                         state = 0
